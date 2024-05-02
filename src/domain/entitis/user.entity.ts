@@ -14,7 +14,7 @@ export class UserEntity {
     ){}
 
     static fromObject(object: {[key: string]: any}) {
-        const { id, _id, name, email, emaiValidated, password, role, img } = object;
+        const { id, _id, name, email, emailValidated, password, role, img } = object;
 
         if ( !_id && !id ) {
             throw CustomError.badRequest("Missing id");
@@ -22,10 +22,10 @@ export class UserEntity {
 
         if ( !name ) throw CustomError.badRequest("Missing name");
         if ( !email ) throw CustomError.badRequest("Missing email");
-        if ( emaiValidated === undefined ) throw CustomError.badRequest("Missing emai validated");
+        if ( emailValidated === undefined ) throw CustomError.badRequest("Missing emai validated");
         if ( !password ) throw CustomError.badRequest("Missing password");
         if ( !role ) throw CustomError.badRequest("Missing role");
 
-        return new UserEntity(_id || id , name, email, emaiValidated, password , role, img)
+        return new UserEntity(_id || id , name, email, emailValidated, password , role, img)
     }
 }
