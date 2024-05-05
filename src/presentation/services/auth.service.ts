@@ -11,6 +11,8 @@ export class AuthService {
     ){}
 
     public async registerUser( registerUserDto: RegisterUserDto ) {
+
+        console.log(registerUserDto)
         
         const existUser = await UserModel.findOne({email: registerUserDto.email})
         if ( existUser ) throw CustomError.badRequest("Email already exist");
@@ -18,7 +20,7 @@ export class AuthService {
         try {
             
             const user = new UserModel(registerUserDto);
-            user.password = bcryptAdapter.has(registerUserDto.password)
+            user.password = bcryptAdapter.hash(registerUserDto.password)
 
             await user.save();
 
