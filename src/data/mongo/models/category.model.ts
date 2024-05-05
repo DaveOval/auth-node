@@ -5,7 +5,8 @@ const categorySchema = new mongoose.Schema({
 
     name: {
         type: String,
-        required: [ true, "Name is required" ]
+        required: [ true, "Name is required" ],
+        unique: true,
     },
 
     available: {
@@ -16,7 +17,7 @@ const categorySchema = new mongoose.Schema({
     user: {
         type: Schema.Types.ObjectId,
         ref: "User",
-        required: true
+        required: true,
     }
 });
 
